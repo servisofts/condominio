@@ -1,5 +1,5 @@
 {
-    "ss": "servisofts.kolping",
+    "ss": "servisofts.condominio",
     "socket_client": {
         "servicio": {
             "puerto": 10001,
@@ -12,24 +12,24 @@
         "reconectTime": 5000
     },
     "files": {
-        "url": "/u01/servisoftsFiles/kolping/"
+        "url": "/u01/servisoftsFiles/condominio/"
     },
     "data_base": {
         "puerto": 5432,
         "pass": "postgres",
-        "ip": "kolping.ss.lo",
-        "bd_name": "servisofts.kolping",
+        "ip": "condominio.ss.lo",
+        "bd_name": "servisofts.condominio",
         "user": "postgres"
     },
-    "nombre": "kolping",
+    "nombre": "condominio",
     "ssl": {
         "pass_jks": "Servisofts123.",
         "cert": {
             "ST": "Av Banzer",
             "C": "BO",
             "E": "ricky.paz.d.97@gmail.com",
-            "OU": "kolping",
-            "CN": "kolping.servisofts.com",
+            "OU": "condominio",
+            "CN": "condominio.servisofts.com",
             "L": "Santa Cruz",
             "O": "Servisofts SRL"
         },

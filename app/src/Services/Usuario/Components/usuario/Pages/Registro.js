@@ -20,7 +20,7 @@ class Registro extends Component {
             ref={(form) => { this.form = form; }}
             col={"xs-11 sm-9 md-7 lg-5 xl-4"}
             inputProps={{
-                customStyle: "kolping"
+                customStyle: "calistenia"
             }}
             inputs={{
                 Nombres: { label: "Nombres", isRequired: true, defaultValue: this.usr.Nombres, icon: <SIcon name={"InputUser"} width={40} height={30} /> },

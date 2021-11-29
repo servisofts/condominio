@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SHr, SNavigation, SPage, SText, SThread, SView, STheme } from 'servisofts-component';
+import { SHr, SNavigation, SPage, SText, SThread, SView, STheme, SLoad } from 'servisofts-component';
 import Pages from "../Pages/index";
+import usuario from '../Services/Usuario/Components/usuario';
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +25,7 @@ class Home extends Component {
             onPress={() => { SNavigation.navigate(url) }}
         >
             <SText secondary style={{
-                marginStart: size*8,
+                marginStart: size * 8,
             }}>{url}</SText>
         </SView>
     }
@@ -32,17 +33,18 @@ class Home extends Component {
         return Object.keys(Pages).map((key) => {
             // if(key.indexOf("/") > 0) return null;
             var spli = key.split("/");
-            if(key.indexOf("/") == 0 ) spli = [""] 
+            if (key.indexOf("/") == 0) spli = [""]
             return <>
                 <SView height={8} />
-                {this.accesoModelo(key, spli.length-1)}
+                {this.accesoModelo(key, spli.length - 1)}
             </>
         })
     }
 
     render() {
+        usuario.Actions.validateSession(this.props);
         return (
-            <SPage title={'Home'} preventBack>
+            <SPage title={'Home'}>
                 <SView col={"xs-12"} center>
                     {this.accesos()}
                 </SView>

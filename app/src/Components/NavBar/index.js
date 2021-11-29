@@ -108,7 +108,7 @@ class NavBar extends Component {
                 }}  >
                     <SView style={{ padding: 5, }} row >
                         <SIcon fill="#666666" name={"Inicio"} width={40} />
-                        <SText center style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Inicio</SText>
+                        <SText center style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Inicio</SText>
                     </SView>
                     <SView style={{ right: 10, position: "absolute", top: 14 }} row >
                         <SIcon style={{ textAlign: "right" }} fill="#fff" name={"Icon1"} width={10} />
@@ -121,7 +121,7 @@ class NavBar extends Component {
                         <SView width={40} height={40} center style={{ paddingTop: 5}}>
                             <SIcon fill="#666666" name={"Kolping"} width={55} />
                         </SView>
-                        <SText center style={{ color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Sobre Kolping</SText>
+                        <SText center style={{ color: "#666666", fontSize: 18 }} >Sobre Kolping</SText>
                     </SView>
                     <SView style={{ right: 10, position: "absolute", top: 14 }} row >
                         <SIcon style={{ textAlign: "right" }} fill="#fff" name={"Icon1"} width={10} />
@@ -134,7 +134,7 @@ class NavBar extends Component {
                         <SView width={40} height={40} center>
                             <SIcon fill="#666666" name={"Consultas"} width={19} />
                         </SView>
-                        <SText center style={{ color: "#666666", fontSize: 18 , paddingLeft:5}} font={"LondonBetween"}>Mis consultas</SText>
+                        <SText center style={{ color: "#666666", fontSize: 18 , paddingLeft:5}} >Mis consultas</SText>
                     </SView>
                     <SView style={{ right: 10, position: "absolute", top: 14 }} row >
                         <SIcon style={{ textAlign: "right" }} fill="#fff" name={"Icon1"} width={10} />
@@ -147,7 +147,7 @@ class NavBar extends Component {
                         <SView width={40} height={40} center>
                             <SIcon fill="#666666" name={"Compras"} width={21} />
                         </SView>
-                        <SText center style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis Compras</SText>
+                        <SText center style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Mis Compras</SText>
                     </SView>
                     <SView style={{ right: 10, position: "absolute", top: 14 }} row >
                         <SIcon style={{ textAlign: "right" }} fill="#fff" name={"Icon1"} width={10} />
@@ -160,7 +160,7 @@ class NavBar extends Component {
                         <SView width={40} height={40} center>
                             <SIcon fill="#666666" name={"KNotify"} width={16} />
                         </SView>
-                        <SText center style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis Notificaciones</SText>
+                        <SText center style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Mis Notificaciones</SText>
                     </SView>
                     <SView style={{ right: 10, position: "absolute", top: 14 }} row >
                         <SIcon style={{ textAlign: "right" }} fill="#fff" name={"Icon1"} width={10} />
@@ -171,7 +171,7 @@ class NavBar extends Component {
                 }}>
                     <SView style={{ padding: 5, }} row>
                         <SIcon fill="#666666" name={"Configuracion"} width={40} />
-                        <SText center style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Configuración</SText>
+                        <SText center style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Configuración</SText>
                     </SView>
                     <SView style={{ right: 10, position: "absolute", top: 14 }} row >
                         <SIcon style={{ textAlign: "right" }} fill="#fff" name={"Icon1"} width={10} />
@@ -182,7 +182,7 @@ class NavBar extends Component {
                 }}>
                     <SView style={{ padding: 5, }} row>
                         <SIcon fill="#666666" name={"Ayuda"} width={40} />
-                        <SText center style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Ayuda</SText>
+                        <SText center style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Ayuda</SText>
                     </SView>
                     <SView style={{ right: 10, position: "absolute", top: 14 }} row >
                         <SIcon style={{ textAlign: "right" }} fill="#fff" name={"Icon1"} width={10} />

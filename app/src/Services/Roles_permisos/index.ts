@@ -2,13 +2,13 @@ import { SPageListProps } from 'servisofts-component'
 
 const ServiceName = "roles_permisos";
 
-import rol from './Components/rol';
+import usuarioPage from './Components/usuarioPage';
 const Pages: SPageListProps = {
-    ...rol.Pages
+    ...usuarioPage.Pages
 }
 
 const Reducers = {
-    ...rol.Reducers
+    ...usuarioPage.Reducers
 }
 
 export default {

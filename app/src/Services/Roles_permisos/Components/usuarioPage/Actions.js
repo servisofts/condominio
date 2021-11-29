@@ -6,7 +6,7 @@ export default class Actions {
     static _getReducer = (props) => {
         return props.state[Parent.component + "Reducer"];
     }
-    static getAll = (props) => {
+    static getAll = (key_usuario, props) => {
         var reducer = Actions._getReducer(props);
         var data = reducer.data;
         if (!data) {
@@ -16,6 +16,7 @@ export default class Actions {
                 component: Parent.component,
                 version: Parent.version,
                 type: "getAll",
+                key_usuario: key_usuario,
                 estado: "cargando",
             })
             return null;

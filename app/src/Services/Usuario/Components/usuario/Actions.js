@@ -1,15 +1,26 @@
 import SSocket from 'servisofts-socket';
 import Parent from './index';
 import Service from '../../index';
+import { SNavigation } from 'servisofts-component';
 
 export default class Actions {
     static _getReducer = (props) => {
         return props.state[Parent.component + "Reducer"];
     }
+    static validateSession(props,preventRedirect) {
+        var reducer = Actions._getReducer(props);
+        var data = reducer.usuarioLog;
+        if (!data) {
+            if(preventRedirect) return null;
+            SNavigation.replace("carga");
+            return null;
+        }
+        return data;
 
+    }
     static login(data) {
         var object = {
-            service:Service.ServiceName,
+            service: Service.ServiceName,
             component: "usuario",
             version: "2.0",
             type: "login",

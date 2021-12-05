@@ -18,6 +18,14 @@ export default class Actions {
         return data;
 
     }
+
+    static getError = (type, props) => {
+        if (props.state.usuarioReducer.estado == "error" && props.state.usuarioReducer.type == type) {
+            props.state.usuarioReducer.estado = "";
+            return props.state.usuarioReducer.error;
+        }
+        return null
+    }
     static login(data) {
         var object = {
             service: Service.ServiceName,
@@ -62,6 +70,7 @@ export default class Actions {
             version: Parent.version,
             type: "registro",
             estado: "cargando",
+            key_rol: "1c09542d-4146-4d2e-9f88-48b093c74216",
             key_usuario: "",
             cabecera: "usuario_app",
             data: data
@@ -93,5 +102,41 @@ export default class Actions {
                 estado: 0,
             }
         })
+    }
+
+
+    static recuperarPass = (data, props) => {
+        SSocket.send({
+            service: Service.ServiceName,
+            component: Parent.component,
+            //version: Parent.version,
+            type: "recuperarPass",
+            estado: "cargando",
+            data: data["Correo"]
+        })
+    }
+    static verificarCodigoPass = (data, props) => {
+        SSocket.send({
+            service: Service.ServiceName,
+            component: Parent.component,
+            //version: Parent.version,
+            type: "verificarCodigoPass",
+            estado: "cargando",
+            data: data["Codigo"]
+        })
+    }
+
+    static cambiarPassByCodigo = (data, props) => {
+        SSocket.send({
+            service: Service.ServiceName,
+            component: Parent.component,
+            //version: Parent.version,
+            type: "cambiarPassByCodigo",
+            estado: "cargando",
+            data: data["Password"],
+            usuario_recuperado: props.state.usuarioReducer.usuarioRecuperado
+
+        })
+
     }
 }

@@ -9,12 +9,11 @@ import Usuario from '..';
 // import LogoAnimado from '../../CargaPage/LogoAnimado';
 // import RolDeUsuario from './RolDeUsuario';
 
-class RecuperarPass extends Component {
+class CodigoRecuperarPass extends Component {
     constructor(props) {
         super(props);
         this.state = {
         };
-        this.key = SNavigation.getParam("key");
     }
     getForm() {
         return <SForm
@@ -28,42 +27,49 @@ class RecuperarPass extends Component {
                 customStyle: "calistenia",
             }}
             inputs={{
-                Correo: { placeholder: "Ingrese su correo electrónico", type: "email", isRequired: true, },
+                Codigo: { label: "Ingrese el código recibido", type: "text", isRequired: true},
             }}
             onSubmit={(values) => {
-                Usuario.Actions.recuperarPass(values, this.props);
+                // if (this.key) {
+                //     Usuario.Actions.recuperarPass({
+                //         ...this.usr,
+                //         ...values
+                //     }, this.props);
+                // } else {
+                Usuario.Actions.verificarCodigoPass(values, this.key_rol, this.props);
+                // }
             }}
         />
     }
 
     render() {
-        var error = Usuario.Actions.getError("recuperarPass", this.props);
+        var error = Usuario.Actions.getError("verificarCodigoPass", this.props);
         if (error) {
-            SPopup.alert("Usuario no encontrado, Verifique sus datos.");
+            SPopup.alert("¡Código incorrecto!");
         }
-        if (this.props.state.usuarioReducer.estado == "exito" && this.props.state.usuarioReducer.type == "recuperarPass") {
+        if (this.props.state.usuarioReducer.estado == "exito" && this.props.state.usuarioReducer.type == "verificarCodigoPass") {
             this.props.state.usuarioReducer.estado = "";
-            SNavigation.navigate(Usuario.component + "/codigoRecuperarContrasena");
+            SNavigation.navigate(Usuario.component + "/nuevaContrasena");
+            //alert("¡Código correcto!");
         }
         return (
-            <SPage title={"Recuperar Contraseña"}>
+            <SPage title={"Código de Recuperación"}>
                 <SView center>
                     <SView col={"xs-11 md-6 xl-4"} center>
                         <SView height={40} />
-                        <SText fontSize={16} center>Le enviaremos un mensaje para configurar o restablecer su nueva contraseña. </SText>
+                        <SText fontSize={24} center>¡Mensaje Enviado!</SText>
+                        <SView height={10} />
+                        <SText fontSize={16} center>Revise su bandeja de entrada e introduzca el código recibido. </SText>
                         <SView height={40} />
                         {/* {this.key ? <SView col={"xs-6"} height={150}> <FotoPerfilComponent data={this.usr} component={"usuario"} /> </SView> : null} */}
                         {this.getForm()}
-                        
                         <SView height={16} />
                         <SView col={"xs-11"} row center>
-                            <SButtom type={"outline"} center props={{
-                                // type: STheme.color.primary
-                            }}
+                            <SButtom type={"outline"}
                                 onPress={() => {
                                     this.form.submit();
                                 }}
-                            >ENVIAR</SButtom>
+                            >VERIFICAR</SButtom>
                         </SView>
                         <SView height={36} />
                     </SView>
@@ -76,4 +82,4 @@ class RecuperarPass extends Component {
 const initStates = (state) => {
     return { state }
 };
-export default connect(initStates)(RecuperarPass);
+export default connect(initStates)(CodigoRecuperarPass);

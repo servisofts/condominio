@@ -20,14 +20,14 @@ class Lista extends Component {
             return <SView width={150} height={150} style={{
                 padding: 12,
             }}>
-                <SView col={"xs-12"} height card center style={{
+                <SView col={"xs-12"} height center style={{
                     overflow: "hidden",
                 }} onPress={()=>{
                     SNavigation.navigate(obj.url)
                 }}>
                     <SView flex col={"xs-12"}>
                         <SImage src={`${SSocket.api.roles_permisos}page/${obj.key}`} style={{
-                            resizeMode: 'cover',
+                            // resizeMode: 'cover',
                         }} />
                     </SView>
                     <SView col={"xs-12"} height={34} center>

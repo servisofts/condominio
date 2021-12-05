@@ -1,18 +1,18 @@
 
 import Usuario from './Usuario';
-import Kolping from './Kolping';
 import Roles_permisos from './Roles_permisos';
+import Condominio from './Condominio';
 const Pages = {
     ...Usuario.Pages,
-    ...Kolping.Pages,
     ...Roles_permisos.Pages,
+    ...Condominio.Pages,
 
 }
 
 const Reducers = {
     ...Usuario.Reducers,
-    ...Kolping.Reducers,
     ...Roles_permisos.Reducers,
+    ...Condominio.Reducers,
 }
 
 export default {

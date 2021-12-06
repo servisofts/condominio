@@ -1,16 +1,24 @@
 import org.json.JSONObject;
 
 public class ManejadorCliente {
-    public static void onMessage(JSONObject data, JSONObject config) {
-        if (data.isNull("component")) {
-            data.put("error", "No existe el componente");
+    public static void onMessage(JSONObject obj, JSONObject config) {
+        if (obj.isNull("component")) {
+            obj.put("error", "No existe el componente");
             return;
         }
-        if(data.has("estado")){
-            if(data.getString("estado").equals("error")){
-                System.out.println(data.getString("error"));
+        if(obj.has("estado")){
+            if(obj.getString("estado").equals("error")){
+                //System.out.println(data.getString("error"));
             }
         }
+
+        switch(obj.getString("component")){
+            case "usuario":
+                new Usuario(obj);
+                break;
+
+        }
+
     }
 
 }

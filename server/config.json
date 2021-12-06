@@ -34,5 +34,11 @@
             "O": "Servisofts SRL"
         },
         "nombre_jks": "servisofts"
+    },
+    "mail_server": {
+        "host": "smtp.gmail.com",
+        "port": 465,
+        "email": "servisofts.srl@gmail.com",
+        "password": "servisofts123."
     }
 }

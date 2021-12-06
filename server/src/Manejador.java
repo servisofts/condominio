@@ -1,4 +1,10 @@
   import org.json.JSONObject;
+
+import Component.Condominio;
+import Component.Expensa;
+import Component.Habitante;
+import Component.PagoExpensa;
+import Component.Vivienda;
 import Server.SSSAbstract.SSSessionAbstract;
 import Servisofts.SConsole;
 
@@ -11,7 +17,21 @@ public class Manejador {
             return;
         }
         switch (obj.getString("component")) {
-            
+            case Condominio.tableName:
+                new Condominio(obj, session);
+            break;
+            case Vivienda.tableName:
+                new Vivienda(obj, session);
+            break;
+            case Habitante.tableName:
+                new Habitante(obj, session);
+            break;
+            case Expensa.tableName:
+                new Expensa(obj, session);
+            break;
+            case PagoExpensa.tableName:
+                new PagoExpensa(obj, session);
+            break;
         }
     }
 }

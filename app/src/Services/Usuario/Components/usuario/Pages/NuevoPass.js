@@ -9,14 +9,15 @@ import Usuario from '..';
 // import LogoAnimado from '../../CargaPage/LogoAnimado';
 // import RolDeUsuario from './RolDeUsuario';
 
-class RecuperarPass extends Component {
+class NuevoPass extends Component {
     constructor(props) {
         super(props);
         this.state = {
         };
-        this.key = SNavigation.getParam("key");
     }
+
     getForm() {
+
         return <SForm
             ref={(ref) => { this.form = ref; }}
             row
@@ -28,42 +29,58 @@ class RecuperarPass extends Component {
                 customStyle: "calistenia",
             }}
             inputs={{
-                Correo: { placeholder: "Ingrese su correo electrónico", type: "email", isRequired: true, },
+                Password: { label: "Introduce tu nueva contraseña", isRequired: true, type: "password", },
+                RepPassword: { label: "Confirma tu nueva contraseña", type: "password", isRequired: true, },
             }}
             onSubmit={(values) => {
-                Usuario.Actions.recuperarPass(values, this.props);
+                // if (this.key) {
+                //     Usuario.Actions.recuperarPass({
+                //         ...this.usr,
+                //         ...values
+                //     }, this.props);
+                // } else {
+                Usuario.Actions.cambiarPassByCodigo(values, this.props);
+                // }
             }}
         />
     }
 
     render() {
-        var error = Usuario.Actions.getError("recuperarPass", this.props);
-        if (error) {
-            SPopup.alert("Usuario no encontrado, Verifique sus datos.");
+        //var bb = this.props.state.usuarioReducer.usuarioRecuperado;
+        // var error = Usuario.Actions.getError("verificarCodigoPass", this.props);
+        // if (error) {
+        //     SPopup.alert("¡Código incorrecto!");
+        // }
+        if (!this.props.state.usuarioReducer.usuarioRecuperado) {
+            SNavigation.goBack();
         }
-        if (this.props.state.usuarioReducer.estado == "exito" && this.props.state.usuarioReducer.type == "recuperarPass") {
+        if (this.props.state.usuarioReducer.estado == "exito" && this.props.state.usuarioReducer.type == "cambiarPassByCodigo") {
             this.props.state.usuarioReducer.estado = "";
-            SNavigation.navigate(Usuario.component + "/codigoRecuperarContrasena");
+            // var dataRecuperar = Usuar
+            SNavigation.navigate("login");
+
         }
         return (
-            <SPage title={"Recuperar Contraseña"}>
+            <SPage title={"Registrar nueva contraseña"}>
                 <SView center>
                     <SView col={"xs-11 md-6 xl-4"} center>
                         <SView height={40} />
-                        <SText fontSize={16} center>Le enviaremos un mensaje para configurar o restablecer su nueva contraseña. </SText>
-                        <SView height={40} />
+                        <SText fontSize={24}  font="LondonTwo" center>¡Restablece tu contraseña!</SText>
+                        <SView height={30} />
+                        <SText fontSize={18}>{this.props.state.usuarioReducer.usuarioRecuperado.correo}</SText>
+                        <SView height={30} />
+
                         {/* {this.key ? <SView col={"xs-6"} height={150}> <FotoPerfilComponent data={this.usr} component={"usuario"} /> </SView> : null} */}
                         {this.getForm()}
-                        
-                        <SView height={16} />
+                        <SView height={30} />
                         <SView col={"xs-11"} row center>
-                            <SButtom type={"outline"} center props={{
+                            <SButtom type={"outline"} props={{
                                 // type: STheme.color.primary
                             }}
                                 onPress={() => {
                                     this.form.submit();
                                 }}
-                            >ENVIAR</SButtom>
+                            >RESTABLECER</SButtom>
                         </SView>
                         <SView height={36} />
                     </SView>
@@ -76,4 +93,4 @@ class RecuperarPass extends Component {
 const initStates = (state) => {
     return { state }
 };
-export default connect(initStates)(RecuperarPass);
+export default connect(initStates)(NuevoPass);

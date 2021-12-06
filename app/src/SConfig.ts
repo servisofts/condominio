@@ -7,17 +7,17 @@ const SThemeProps: SThemeThemes = {
         primary: "#999999",
         secondary: "#000000",
         info: "#DE5738",
-        background: "#ffffff",
+        background: "#dddddd",
         card: "#dddddd"
     },
     dark: {
         barStyle: "light-content",
-        barColor: "#666666",
+        barColor: "#000000",
         text: "#ffffff",
-        primary: "#666666",
+        primary: "#000000",
         secondary: "#ffffff",
         info: "#DE5738",
-        background: "#000000",
+        background: "#222222",
         card: "#333333"
     }
 }

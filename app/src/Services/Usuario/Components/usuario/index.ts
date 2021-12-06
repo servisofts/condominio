@@ -10,7 +10,9 @@ import Registro from "./Pages/Registro";
 import RecuperarPass from "./Pages/RecuperarPass";
 import TipoUsuario from "./Pages/TipoUsuario";
 import Login from "./Pages/Login";
-
+import CodigoRecuperarPass from "./Pages/CodigoRecuperarPass";
+import NuevoPass from "./Pages/NuevoPass";
+import Select from "./Pages/Select";
 export default {
     component,
     version,
@@ -22,6 +24,9 @@ export default {
         [component]: Lista,
         [component + "/registro"]: Registro,
         [component + "/recuperarContrasena"]: RecuperarPass,
+        [component + "/codigoRecuperarContrasena"]: CodigoRecuperarPass,
+        [component + "/nuevaContrasena"]: NuevoPass,
+        [component + "/select"]: Select,
         "login":Login
     }
 }

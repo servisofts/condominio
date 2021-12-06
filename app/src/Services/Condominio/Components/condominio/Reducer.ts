@@ -1,5 +1,3 @@
-import { SStorage } from 'servisofts-component'
-
 import Parent from './index'
 
 type DataProps = {
@@ -12,13 +10,10 @@ type DataProps = {
 }
 
 const initialState = () => {
-    var initialState:any = {
+    var initialState: any = {
         component: Parent.component,
         version: Parent.version,
     }
-    SStorage.getItem("usr_log", (resp:any) => {
-        initialState.usuarioLog = JSON.parse(resp);
-    })
     return initialState;
 }
 export default (state: any, action: DataProps) => {
@@ -40,9 +35,7 @@ const TypesSwitch = (state: any, action: DataProps) => {
         case "registro": return registro(state, action);
         case "editar": return editar(state, action);
         case "getById": return getById(state, action);
-        case "login": return login(state, action);
-        case "recuperarPass": return recuperarPass(state, action);
-        case "verificarCodigoPass": return verificarCodigoPass(state, action);
+
     }
 }
 
@@ -52,8 +45,10 @@ const getAll = (state: any, action: DataProps) => {
 }
 const registro = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
+    state.lastRegister = action.data;
     if (!state.data) return;
     state.data[action.data.key] = action.data;
+    
 }
 const editar = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
@@ -63,27 +58,4 @@ const editar = (state: any, action: DataProps) => {
 const getById = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.data[action.data.key] = action.data;
-}
-
-const login = (state: any, action: DataProps) => {
-    if (action.estado === "exito") {
-        state.usuarioLog = action.data;
-        SStorage.setItem("usr_log", JSON.stringify(action.data));
-        state.login = action.data
-    }
-}
-const recuperarPass = (state: any, action: DataProps) => {
-    if (action.estado != "exito") return;
-    if (!state.data) return;
-    state.data[action.data.key] = action.data;
-}
-
-const verificarCodigoPass = (state: any, action: DataProps) => {
-    // if (action.estado != "exito") return;
-    // state.usuarioRecuperado = action.data;
-    if (action.estado === "exito") {
-        state.usuarioRecuperado = action.data;
-    }
-    // SStorage.setItem("usr_log", JSON.stringify(action.data));
-    // state.login = action.data
 }

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { SButtom, SForm, SHr, SIcon, SNavigation, SPage, SPopup, SText, STheme, SView } from 'servisofts-component';
 import Parent from '../index'
 import Usuario from '..';
-import Kolping from '../../../../../Components/Kolping';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -29,7 +28,7 @@ class Login extends Component {
                             this.form.focus("password");
                         }
                     },
-                    icon: <SIcon name={"InputEmail"} width={40} height={30} />
+
                 },
                 password: {
                     placeholder: "Contraseña",
@@ -38,7 +37,6 @@ class Login extends Component {
                             this.form.submit();
                         }
                     },
-                    icon: <SIcon name={"InputPassword"} width={40} height={30} />
                 },
             }}
             onSubmit={(data) => {
@@ -52,10 +50,10 @@ class Login extends Component {
 
     render() {
         var reducer = this.props.state[Parent.component + "Reducer"];
-        if(reducer.usuarioLog){
+        if (reducer.usuarioLog) {
             SNavigation.replace("carga");
         }
-        if(reducer.type == "login" && reducer.estado == "error"){
+        if (reducer.type == "login" && reducer.estado == "error") {
             reducer.estado = "";
             SPopup.alert("Error");
         }
@@ -63,67 +61,38 @@ class Login extends Component {
             <SPage title={'Login ' + Parent.component} center hidden>
                 <SView center col={"xs-12"}>
                     <SView col={"xs-11 md-6 xl-4"} center  >
-                        <SHr height={32}/>
+                        <SHr height={32} />
                         <SView col={"xs-11"} height={140}>
-                                <SIcon name={"Logo"} fill={STheme.color.lightBlack} stroke={STheme.color.lightBlack} />
+                            <SIcon name={"Logo"} fill={STheme.color.lightBlack} stroke={STheme.color.lightBlack} />
                         </SView>
                         <SView height={32} />
                         {this.getForm()}
                         <SView height={16} />
 
                         <SView col={"xs-12"} flex height style={{ alignItems: "flex-end" }}>
-                            <SText fontSize={14} color={STheme.color.lightBlack}  onPress={() => { SNavigation.navigate(Parent.component + '/recuperarContrasena'); }}>¿Olvidaste tu email o contraseña?</SText>
+                            <SText style={{
+                                textDecoration:"underline",
+                            }} fontSize={14} color={STheme.color.secondary} onPress={() => { SNavigation.navigate(Parent.component + '/recuperarContrasena'); }}>¿Olvidaste tu email o contraseña?</SText>
                         </SView>
 
                         <SView height={30} />
                         <SView col={"xs-11"} row center>
-                            <Kolping.KButtom onPress={() => {
-                                this.form.submit();
-                            }}>INICIAR</Kolping.KButtom>
+                            <SButtom
+                                type={"outline"}
+                                onPress={() => {
+                                    this.form.submit();
+                                }}>INICIAR</SButtom>
                             {/* <SButtom style={{ backgroundColor: STheme.color.primary, width: '100%', fontSize: 14, borderRadius: 8, }} onPress={() => {
                                 this.form.submit();
                             }} ></SButtom> */}
-                        </SView>
-                        <SView height={30} />
-                        <SView col={"xs-11"} height={40} row center  >
-                            <SView col={"xs-3"} height center>
-                                <SHr color={STheme.color.lightGray} height={1.5} ></SHr>
-                            </SView>
-                            <SView col={"xs-6"} height center>
-                                <SText fontSize={14} color={STheme.color.lightGray + 100} > o Iniciar sesión con  </SText>
-                            </SView>
-                            <SView col={"xs-3"} height center>
-                                <SHr color={STheme.color.lightGray} height={1.5} ></SHr>
-                            </SView>
-                        </SView>
-
-                        <SView col={"xs-11"} height={100} row center  >
-                            <SView col={"xs-2"} height center>
-                            </SView>
-                            <SView flex center height={60} >
-                                <SView height={50} colSquare center style={{
-                                    backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 2, padding: 8
-                                }}
-                                    onPress={() => { SNavigation.navigate('faceb'); }}>
-                                    <SIcon name={"IconGoogle"} />
-                                </SView>
-                            </SView>
-                            <SView flex center height={60} >
-                                <SView height={50} colSquare center style={{
-                                    backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 2, padding: 8
-                                }}
-                                    onPress={() => { SNavigation.navigate('faceb'); }}>
-                                    <SIcon name={"IconFaceb"} />
-                                </SView>
-                            </SView>
-                            <SView col={"xs-2"} height center>
-                            </SView>
                         </SView>
 
                         <SView col={"xs-11"} height={50} row center  >
                             <SView flex center height={20} row>
                                 <SText fontSize={14} color={STheme.color.lightBlack}  >¿No tienes una cuenta?  </SText>
-                                <SText fontSize={14} color={STheme.color.primary}  onPress={() => { SNavigation.navigate(Parent.component + '/registro'); }}>REGISTRAR</SText>
+                                <SText fontSize={14} style={{
+                                    textDecorationLine: "underline",
+                                }} color={STheme.color.secondary} onPress={() => { SNavigation.navigate(Parent.component + '/registro'); }}>REGISTRATE</SText>
                             </SView>
                         </SView>
                         <SView height={30} />

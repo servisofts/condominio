@@ -18,18 +18,26 @@ class Lista extends Component {
                 { key: "CI", label: "CI", width: 150 },
                 { key: "Nombres", label: "Nombres", width: 150 },
                 { key: "Apellidos", label: "Apellidos", width: 150 },
-                { key: "Correo", label: "Correo", width: 150 , order:"asc"},
+                { key: "Correo", label: "Correo", width: 150, order: "asc" },
                 { key: "Telefono", label: "Telefono", width: 150 },
-                { key: "key-editar", label: "Editar", width: 50, center: true, component: (item) => { return <SView onPress={() => { SNavigation.navigate(Parent.component + "/registro", { key: item }) }}> <SIcon name={"Edit"} width={35} /></SView> } },
-                { key: "key", label: "Roles", width: 50, center: true, component: (item) => { return <SView onPress={() => { SNavigation.navigate("") }}> <SIcon name={"Ajustes"} width={35} /></SView> } },
+                {
+                    key: "key-select", label: "Seleccionar", width: 50, center: true, component: (item) => {
+                        return <SView onPress={() => {
+                            var onSelect = SNavigation.getParam("onSelect");
+                            if (onSelect) onSelect(item);
+                            SNavigation.goBack();
+                        }}> <SIcon name={"Add"} width={35} /></SView>
+                    }
+                },
+
             ]}
             data={data}
-            limit={50}
+            limit={20}
         />
     }
     render() {
         return (
-            <SPage title={'Lista de ' + Parent.component} disableScroll center>
+            <SPage title={'Selecciona el ' + Parent.component} disableScroll center>
                 {this.getContent()}
                 <SButtom type={"float"} onPress={() => {
                     SNavigation.navigate(Parent.component + "/registro")

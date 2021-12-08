@@ -32,7 +32,6 @@ export default (state: any, action: DataProps) => {
 const TypesSwitch = (state: any, action: DataProps) => {
     switch (action.type) {
         case "getAll": return getAll(state, action);
-        case "getAllByKeyCondominio": return getAllByKeyCondominio(state, action);
         case "registro": return registro(state, action);
         case "editar": return editar(state, action);
         case "getById": return getById(state, action);
@@ -43,10 +42,6 @@ const TypesSwitch = (state: any, action: DataProps) => {
 const getAll = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.data = action.data;
-}
-const getAllByKeyCondominio = (state: any, action: DataProps) => {
-    if (action.estado != "exito") return;
-    state.data_by_condominio = action.data;
 }
 const registro = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;

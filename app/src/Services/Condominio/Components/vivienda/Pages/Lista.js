@@ -26,7 +26,7 @@ class Lista extends Component {
                 //     key: "key-foto", label: "Foto", width: 70, center: true, component: (key) => {
                 //         return <SView width={40} height={40} onPress={() => {
                 //         }}>
-                //             <SImage src={SSocket.api.root + Parent.component + "/" + key} />
+                //             <SImage src={SSocket.api.root + Parent.component + "/" + key} enablePreview />
                 //         </SView>
                 //     }
                 // },

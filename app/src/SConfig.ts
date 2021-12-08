@@ -2,13 +2,12 @@ import { SThemeThemes } from 'servisofts-component'
 const SThemeProps: SThemeThemes = {
     default: {
         barStyle: "light-content",
-        barColor: "#999999",
+        barColor: "#eeeeee",
         text: "#000000",
-        primary: "#999999",
+        primary: "#eeeeee",
         secondary: "#000000",
-        info: "#DE5738",
-        background: "#dddddd",
-        card: "#dddddd"
+        background: "#eeeeee",
+        card: "#CCC6C666"
     },
     dark: {
         barStyle: "light-content",
@@ -16,9 +15,8 @@ const SThemeProps: SThemeThemes = {
         text: "#ffffff",
         primary: "#000000",
         secondary: "#ffffff",
-        info: "#DE5738",
-        background: "#222222",
-        card: "#333333"
+        background: "#000000",
+        card: "#44000066"
     }
 }
 

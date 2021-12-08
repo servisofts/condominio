@@ -15,44 +15,27 @@ export default class Actions {
         var reducer = Actions._getReducer(props);
         reducer.estado = estado;
     }
-    static getAll = (key_vivienda, props) => {
+    static getAll = (key_condominio, key_usuario_administrador, props) => {
         var reducer = Actions._getReducer(props);
-        if (reducer.key_vivienda != key_vivienda) {
+        if (reducer.key_condominio != key_condominio) {
+            reducer.data = null;
+        }
+        if (reducer.key_usuario_administrador != key_usuario_administrador) {
             reducer.data = null;
         }
         var data = reducer.data;
         if (!data) {
             if (reducer.estado == "cargando") return null;
-            reducer.key_vivienda = key_vivienda;
+            reducer.key_condominio = key_condominio;
+            reducer.key_usuario_administrador = key_usuario_administrador;
             SSocket.send({
                 // service: Service.ServiceName,
                 component: Parent.component,
                 version: Parent.version,
                 type: "getAll",
                 estado: "cargando",
-                key_vivienda: key_vivienda,
-                key_usuario: props.state.usuarioReducer.usuarioLog.key,
-            })
-            return null;
-        }
-        return data;
-    }
-    static getAllByKeyCondominio = (key_condominio, props) => {
-        var reducer = Actions._getReducer(props);
-        if (reducer.key_condominio != key_condominio) {
-            reducer.data_by_condominio = null;
-        }
-        var data = reducer.data_by_condominio;
-        if (!data) {
-            if (reducer.estado == "cargando") return null;
-            reducer.key_condominio = key_condominio;
-            SSocket.send({
-                // service: Service.ServiceName,
-                component: Parent.component,
-                version: Parent.version,
-                type: "getAllByKeyCondominio",
-                estado: "cargando",
                 key_condominio: key_condominio,
+                key_usuario_administrador: key_usuario_administrador,
                 key_usuario: props.state.usuarioReducer.usuarioLog.key,
             })
             return null;
@@ -60,13 +43,13 @@ export default class Actions {
         return data;
     }
 
-    static getByKey = (key, key_vivienda, props) => {
-        var data = Actions.getAll(key_vivienda, props);
+    static getByKey = (key, key_condominio, props) => {
+        var data = Actions.getAll(key_condominio, null, props);
         if (!data) return null;
         return data[key];
     }
 
-    static registro = (data, key_vivienda, props) => {
+    static registro = (data, key_condominio, props) => {
         var reducer = Actions._getReducer(props);
         if (reducer.type == "registro" && reducer.estado == "cargando") return;
         SSocket.send({
@@ -78,7 +61,7 @@ export default class Actions {
             key_usuario: props.state.usuarioReducer.usuarioLog.key,
             data: {
                 ...data,
-                key_vivienda: key_vivienda,
+                key_condominio: key_condominio,
                 key_usuario: props.state.usuarioReducer.usuarioLog.key,
             }
         })

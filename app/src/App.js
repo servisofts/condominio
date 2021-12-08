@@ -13,6 +13,7 @@ import reduxThunk from 'redux-thunk';
 import SSocket, { setProps } from 'servisofts-socket'
 
 import SConfig from './SConfig';
+import BackgroundImage from './Components/BackgroundImage';
 setProps(SConfig.SocketProps);
 
 const store = createStore(
@@ -28,6 +29,7 @@ const App = (props) => {
                 debug
                 socket={SSocket}
                 assets={Assets}
+                background={<BackgroundImage />}
                 theme={{ initialTheme: "dark", themes: SConfig.SThemeProps }}>
                 <SNavigation props={{
                     prefixes: ["https://component.servisofts.com", "component.servisofts://"],

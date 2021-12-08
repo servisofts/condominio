@@ -25,7 +25,7 @@ class Lista extends Component {
                     key: "key-foto", label: "Foto", width: 70, center: true, component: (key) => {
                         return <SView width={40} height={40} onPress={() => {
                         }}>
-                            <SImage src={SSocket.api.root + Parent.component + "/" + key} />
+                            <SImage src={SSocket.api.root + Parent.component + "/" + key} enablePreview/>
                         </SView>
                     }
                 },
@@ -35,13 +35,13 @@ class Lista extends Component {
                 { key: "mts2", label: "mts2", width: 150, center: true },
                 {
                     key: "key_usuario", label: "Usuario", width: 150, center: true, render: (key) => {
-                        if(!usuarios[key]) return "";
+                        if (!usuarios[key]) return "";
                         return `${usuarios[key]["Nombres"]} ${usuarios[key]["Apellidos"]}`
                     }
                 },
-                { key: "key-editar", label: "Editar", width: 50, center: true, component: (item) => { return <SView onPress={() => { SNavigation.navigate(Parent.component + "/registro", { key: item }) }}> <SIcon name={"Edit"} width={35} /></SView> } },
+                { key: "key-editar", label: "Editar", width: 70, center: true, component: (item) => { return <SView onPress={() => { SNavigation.navigate(Parent.component + "/registro", { key: item }) }}> <SIcon name={"Edit"} width={35} /></SView> } },
                 {
-                    key: "key-eliminar", label: "Elimnar", width: 50, center: true, component: (item) => {
+                    key: "key-eliminar", label: "Elimnar", width: 70, center: true, component: (item) => {
                         return <SView onPress={() => {
                             SPopup.confirm({
                                 title: "Seguro que desea eliminar?", onPress: () => {
@@ -52,8 +52,9 @@ class Lista extends Component {
                         </SView>
                     }
                 },
-                { key: "key-vivienda", label: "Vivienda", width: 50, center: true, component: (item) => { return <SView onPress={() => { SNavigation.navigate("vivienda", { key_condominio: item }) }}> <SIcon name={"Ajustes"} width={35} /></SView> } },
-                { key: "key-expensa", label: "Expensa", width: 50, center: true, component: (item) => { return <SView onPress={() => { SNavigation.navigate("expensa", { key_condominio: item }) }}> <SIcon name={"Money"} width={35} /></SView> } },
+                { key: "key-admin", label: "Administrador", width: 70, center: true, component: (item) => { return <SView onPress={() => { SNavigation.navigate("administrador", { key_condominio: item }) }}> <SIcon name={"Usuarios_all"} width={35} /></SView> } },
+                { key: "key-vivienda", label: "Vivienda", width: 70, center: true, component: (item) => { return <SView onPress={() => { SNavigation.navigate("vivienda", { key_condominio: item }) }}> <SIcon name={"Ajustes"} width={35} /></SView> } },
+                { key: "key-expensa", label: "Expensa", width: 70, center: true, component: (item) => { return <SView onPress={() => { SNavigation.navigate("expensa", { key_condominio: item }) }}> <SIcon name={"Money"} width={35} /></SView> } },
 
             ]}
             data={data}

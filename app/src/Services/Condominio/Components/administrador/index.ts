@@ -1,5 +1,5 @@
 //  COMPONENT CONFIG
-const component = "vivienda"; // COMPONENT NAME 
+const component = "administrador"; // COMPONENT NAME 
 const version = "1.0";
 // ---------------------------------------
 import Actions from "./Actions";
@@ -8,7 +8,8 @@ import Lista from "./Pages/Lista";
 import Registro from "./Pages/Registro";
 
 import Select from "./Pages/Select";
-import Card from "./Pages/Card";
+import MisCondominios from "./Pages/MisCondominios";
+
 //alvaro
 export default {
     component,
@@ -22,7 +23,7 @@ export default {
         [component]: Lista,
         [component + "/registro"]: Registro,
         [component + "/lista"]: Lista,
-        [component + "/card"]: Card,
         [component + "/select"]: Select,
+        [component + "/misCondominios"]: MisCondominios,
     }
 }

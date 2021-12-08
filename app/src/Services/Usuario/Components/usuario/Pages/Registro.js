@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SButtom, SForm, SHr, SPage, SText, SNavigation, SLoad,SView, SIcon, SPopup } from 'servisofts-component';
+import { SButtom, SForm, SHr, SPage, SText, SNavigation, SLoad, SView, SIcon, SPopup } from 'servisofts-component';
 import Parent from '../index'
+import SSocket from 'servisofts-socket'
 class Registro extends Component {
     constructor(props) {
         super(props);
@@ -22,13 +23,14 @@ class Registro extends Component {
                 customStyle: "calistenia"
             }}
             inputs={{
+                foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}${Parent.component}/${this.key}` },
                 CI: { label: "CI", defaultValue: this.usr.CI, },
                 Nombres: { label: "Nombres", isRequired: true, defaultValue: this.usr.Nombres, },
-                Apellidos: { label: "Apellidos",isRequired: true, defaultValue: this.usr.Apellidos,  },
-                Correo: { label: "Correo",isRequired: true, defaultValue: this.usr.Correo,  },
-                "Fecha de nacimiento": { label: "Fecha de nacimiento", type: "date", isRequired: true, defaultValue: this.usr["Fecha de nacimiento"]  },
-                Telefono: { label: "Telefono", defaultValue: this.usr.Telefono?this.usr.Telefono:" ", type:"phone", },
-                Password: { label: "Password",isRequired: true, type: "password",defaultValue: this.usr.Password,  },
+                Apellidos: { label: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos, },
+                Correo: { label: "Correo", isRequired: true, defaultValue: this.usr.Correo, },
+                "Fecha de nacimiento": { label: "Fecha de nacimiento", type: "date", isRequired: true, defaultValue: this.usr["Fecha de nacimiento"] },
+                Telefono: { label: "Telefono", defaultValue: this.usr.Telefono ? this.usr.Telefono : " ", type: "phone", },
+                Password: { label: "Password", isRequired: true, type: "password", defaultValue: this.usr.Password, },
                 // RepPassword: { label: "Repetir password", type: "password", isRequired: true, defaultValue: this.usr.Password  },
 
             }}
@@ -46,27 +48,38 @@ class Registro extends Component {
     }
     render() {
         var reducer = this.props.state.usuarioReducer;
-        if(reducer.type =="registro" && reducer.estado=="exito"){
-            // SNavigation.goBack();
-            SPopup.alert("exito");
+        if (reducer.type == "registro" && reducer.estado == "exito") {
+            SNavigation.goBack();
+            // SPopup.alert("exito");
         }
-        if(reducer.type =="editar" && reducer.estado=="exito"){
-            // SNavigation.goBack();
-            SPopup.alert("exito");
+        if (Parent.Actions._getEstadoByType("registro", this.props) == "exito") {
+            Parent.Actions._setEstado("", this.props);
+            if (this.form) {
+                var lastsend = Parent.Actions._getReducer(this.props).lastRegister;
+                this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + lastsend.key);
+            }
+            SNavigation.goBack();
         }
-        if(reducer.type =="registro" && reducer.estado=="error"){
+        if (Parent.Actions._getEstadoByType("editar", this.props) == "exito") {
+            Parent.Actions._setEstado("", this.props);
+            if (this.form) {
+                this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
+            }
+            SNavigation.goBack();
+        }
+        if (reducer.type == "registro" && reducer.estado == "error") {
             reducer.estado = "";
-            SPopup.alert(JSON.stringify(reducer.error));
-            // SPopup.alert("El usuario ya existe");
+            // SPopup.alert(JSON.stringify(reducer.error));
+            SPopup.alert("El usuario ya existe");
         }
 
         return (
-            <SPage title={'Registro de '+Parent.component} center>
+            <SPage title={'Registro de ' + Parent.component} center>
                 <SView height={30}></SView>
                 {this.getContent()}
-                <SHr height={25}/>
-                <SButtom 
-                style={{color: '#fff'}}
+                <SHr height={25} />
+                <SButtom
+                    style={{ color: '#fff' }}
                     props={{
                         type: "outline"
                     }}

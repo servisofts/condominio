@@ -7,11 +7,21 @@ export default class Actions {
     static _getReducer = (props) => {
         return props.state[Parent.component + "Reducer"];
     }
-    static validateSession(props,preventRedirect) {
+
+    static _getEstadoByType = (type, props) => {
+        var reducer = Actions._getReducer(props);
+        if (reducer.type != type) return "";
+        return reducer.estado;
+    }
+    static _setEstado = (estado, props) => {
+        var reducer = Actions._getReducer(props);
+        reducer.estado = estado;
+    }
+    static validateSession(props, preventRedirect) {
         var reducer = Actions._getReducer(props);
         var data = reducer.usuarioLog;
         if (!data) {
-            if(preventRedirect) return null;
+            if (preventRedirect) return null;
             SNavigation.replace("carga");
             return null;
         }

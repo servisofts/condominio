@@ -1,5 +1,6 @@
   import org.json.JSONObject;
 
+import Component.Administrador;
 import Component.Condominio;
 import Component.Expensa;
 import Component.Habitante;
@@ -31,6 +32,9 @@ public class Manejador {
             break;
             case PagoExpensa.tableName:
                 new PagoExpensa(obj, session);
+            break;
+            case Administrador.tableName:
+                new Administrador(obj, session);
             break;
         }
     }

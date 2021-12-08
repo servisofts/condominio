@@ -28,12 +28,27 @@ public class Habitante {
             case "editar":
                 editar(obj, session);
             break;
+            case "getAllByKeyCondominio":
+            getAllByKeyCondominio(obj, session);
+            break;
         }
     }
 
     public void getAll(JSONObject obj, SSSessionAbstract session) {
         try {
             String consulta =  "select get_all('"+tableName+"', 'key_vivienda', '"+obj.getString("key_vivienda")+"') as json";
+            JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
+            obj.put("data", data);
+            obj.put("estado", "exito");
+        } catch (SQLException e) {
+            obj.put("estado", "error");
+            e.printStackTrace();
+        }
+    }
+
+    public void getAllByKeyCondominio(JSONObject obj, SSSessionAbstract session) {
+        try {
+            String consulta =  "select habitante_get_all_by_key_condominio('"+obj.getString("key_condominio")+"') as json";
             JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
             obj.put("data", data);
             obj.put("estado", "exito");

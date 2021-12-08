@@ -10,12 +10,13 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import Server.SSSAbstract.SSSessionAbstract;
 
-public class PagoExpensa {
+public class Administrador {
 
-    public final static String tableName = "pago_expensa";
+    public final static String tableName = "administrador";
 
-    public PagoExpensa(JSONObject obj, SSSessionAbstract session) {
-        switch (obj.getString("type")) {case "getAll":
+    public Administrador(JSONObject obj, SSSessionAbstract session) {
+        switch (obj.getString("type")) {
+            case "getAll":
                 getAll(obj, session);
             break;
             case "getByKey":
@@ -32,12 +33,25 @@ public class PagoExpensa {
 
     public void getAll(JSONObject obj, SSSessionAbstract session) {
         try {
-            String consulta =  "";
-            if(obj.has("key_expensa")){
-                consulta =  "select get_all('"+tableName+"', 'key_expensa', '"+obj.getString("key_expensa")+"') as json";
+            String consulta = "";
+            if(!obj.isNull("key_condominio")){
+                consulta =  "select get_all('"+tableName+"', 'key_condominio', '"+obj.getString("key_condominio")+"') as json";
             }else{
-                consulta =  "select get_all('"+tableName+"', 'key_vivienda', '"+obj.getString("key_vivienda")+"') as json";
+                consulta =  "select get_all('"+tableName+"', 'key_usuario_administrador', '"+obj.getString("key_usuario")+"') as json";
             }
+
+            JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
+            obj.put("data", data);
+            obj.put("estado", "exito");
+        } catch (SQLException e) {
+            obj.put("estado", "error");
+            e.printStackTrace();
+        }
+    }
+
+    public void getCondominio(JSONObject obj, SSSessionAbstract session) {
+        try {
+            String consulta =  "select get_all('"+tableName+"', 'key_condominio', '"+obj.getString("key_condominio")+"') as json";
             JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
             obj.put("data", data);
             obj.put("estado", "exito");

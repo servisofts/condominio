@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import Server.SSSAbstract.SSServerAbstract;
 import Server.SSSAbstract.SSSessionAbstract;
+import SocketCliente.SocketCliente;
 
 public class Usuario {
 
@@ -128,7 +129,7 @@ public class Usuario {
             data_email.put("subject", "");
             data_email.put("path", "../mail/registro.html");
 
-            new Email(new JSONArray().put(correo) ,data_email).start();
+            //new Email(new JSONArray().put(correo) ,data_email).start();
             System.out.println("NOTIFICAR QUE SE REGISTRO UN NUEVO USUARIO");
 
             
@@ -141,7 +142,7 @@ public class Usuario {
                 data_usuario_rol.put("key_rol", obj.getString("key_rol"));
                 data_usuario_rol.put("key_usuario", data.getString("key"));
                 usuario_rol.put("data", data_usuario_rol);
-                //SocketCliete.send("roles_permisos", usuario_rol, session);
+                SocketCliente.send("roles_permisos", usuario_rol, null);
             }
 
 
